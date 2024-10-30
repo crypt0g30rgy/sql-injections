@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  sqli:
+    build:
+      context: .  # Use the current directory as context
+    ports:
+      - "3000:3000"  # Map host port 3000 to container port 3000
+    environment:
+      MYSQL_HOST: db  # Use the service name defined in the compose file
+      MYSQL_USER: root
+      MYSQL_PASSWORD: passwd
+      MYSQL_DATABASE: demo
+      JWT_SECRET: password  # Use a strong secret in production
+    depends_on:
+      - db  # Wait for db service to start before starting the app
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: passwd
+      MYSQL_DATABASE: demo
+      MYSQL_USER: root
+      MYSQL_PASSWORD: passwd
+    ports:
+      - "3306:3306"  # Expose MySQL port
+    volumes:
+      - db_data:/var/lib/mysql  # Persist data in a named volume
+
+volumes:
+  db_data:  # Create a named volume for MySQL data persistence
