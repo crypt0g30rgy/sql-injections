@@ -1,27 +1,32 @@
 const mysql = require("mysql2/promise");
 
 // MySQL connection pool
-// const pool = mysql.createPool({
-//     host: process.env.MYSQL_HOST,
-//     user: process.env.MYSQL_USER,
-//     password: process.env.MYSQL_PASSWORD,
-//     database: process.env.MYSQL_DATABASE,
-//     waitForConnections: true,
-//     connectionLimit: 10,
-//     queueLimit: 0,
-// });
-
 const pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
 });
 
+// localhost
+
+// const pool = mysql.createPool({
+//     host: process.env.MYSQL_HOST,
+//     user: process.env.MYSQL_USER,
+//     database: process.env.MYSQL_DATABASE,
+//     waitForConnections: true,
+//     connectionLimit: 10,
+//     queueLimit: 0,
+// });
+
 // Get user by Name
 // Vulnerable function to secondary sql injections
+
+// real web api dev note :: toDo :: Add Auth checks
+
 const getUserByName = async (req, res) => {
     try {
 
@@ -66,6 +71,8 @@ const getAllUsers = async (req, res) => {
 };
 
 // Get user by ID
+
+
 const getUserById = async (req, res) => {
     const { id } = req.params;
 

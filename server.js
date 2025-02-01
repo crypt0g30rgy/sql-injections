@@ -4,7 +4,7 @@ require("@aikidosec/firewall");
 const express = require('express');
 const os = require('os');
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 

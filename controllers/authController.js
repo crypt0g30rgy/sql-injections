@@ -3,24 +3,24 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // Create a MySQL connection pool (better than creating a single connection)
-// const pool = mysql.createPool({
-//     host: process.env.MYSQL_HOST,
-//     user: process.env.MYSQL_USER,
-//     password: process.env.MYSQL_PASSWORD,
-//     database: process.env.MYSQL_DATABASE,
-//     waitForConnections: true,
-//     connectionLimit: 10,
-//     queueLimit: 0,
-// });
-
 const pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
 });
+
+// const pool = mysql.createPool({
+//     host: process.env.MYSQL_HOST,
+//     user: process.env.MYSQL_USER,
+//     database: process.env.MYSQL_DATABASE,
+//     waitForConnections: true,
+//     connectionLimit: 10,
+//     queueLimit: 0,
+// });
 
 const createUser = async (req, res) => {
     const { username, email, password } = req.body;

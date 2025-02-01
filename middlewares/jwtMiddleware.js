@@ -2,24 +2,26 @@ const jwt = require("jsonwebtoken");
 const mysql = require("mysql2/promise");
 
 // MySQL connection pool
-// const pool = mysql.createPool({
-//   host: process.env.MYSQL_HOST,
-//   user: process.env.MYSQL_USER,
-//   password: process.env.MYSQL_PASSWORD,
-//   database: process.env.MYSQL_DATABASE,
-//   waitForConnections: true,
-//   connectionLimit: 10,
-//   queueLimit: 0,
-// });
-
 const pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    database: process.env.MYSQL_DATABASE,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
+
+// localhost
+
+// const pool = mysql.createPool({
+//     host: process.env.MYSQL_HOST,
+//     user: process.env.MYSQL_USER,
+//     database: process.env.MYSQL_DATABASE,
+//     waitForConnections: true,
+//     connectionLimit: 10,
+//     queueLimit: 0,
+// });
 
 // Authentication middleware
 const authMiddleware = async (req, res, next) => {
@@ -54,7 +56,7 @@ const authMiddleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.error("Error:", error);
-    if (error.name === "JsonWebTokenError") {
+    if (error.name === "JsonWebTokenError" || error.name === "TokenExpiredError") {
       return res.status(401).json({ Error: "Invalid token." });
     }
     return res.status(500).json({ Error: "Server Error." });

@@ -3,17 +3,29 @@ const mysql = require('mysql2/promise');
 async function setupDatabase() {
     // Create a connection to the MySQL database
     // const pool = await mysql.createPool({
-    //     host: 'localhost',     // Replace with your host
+    //     host: 'db',     // Replace with your host
     //     user: 'root',          // Replace with your database username
     //     password: 'passswd',  // Replace with your database password
     //     database: 'demo'  // Replace with your database name
     // });
 
-    const pool = await mysql.createPool({
-        host: 'localhost',     // Replace with your host
-        user: 'root',          // Replace with your database username
-        database: 'demo'  // Replace with your database name
+    const pool = mysql.createPool({
+      host: process.env.MYSQL_HOST,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0,
     });
+
+    // localhost
+
+    // const pool = await mysql.createPool({
+    //     host: 'localhost',     // Replace with your host
+    //     user: 'root',          // Replace with your database username
+    //     database: 'demo'  // Replace with your database name
+    // });
 
     // Create the users table
     await pool.execute(`

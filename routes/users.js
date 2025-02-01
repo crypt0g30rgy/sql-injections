@@ -29,7 +29,7 @@ const authMiddleware = require("../middlewares/jwtMiddleware");
  *               properties:
  *                 id:
  *                   type: string
- *                 name:
+ *                 username:
  *                   type: string
  *                 email:
  *                   type: string
@@ -54,7 +54,7 @@ router.get("/me", authMiddleware, getUserByName);
  *                 properties:
  *                   id:
  *                     type: string
- *                   name:
+ *                   username:
  *                     type: string
  *                   email:
  *                     type: string
@@ -84,7 +84,7 @@ router.get("/users", getAllUsers);
  *               properties:
  *                 id:
  *                   type: string
- *                 name:
+ *                 username:
  *                   type: string
  *                 email:
  *                   type: string
@@ -114,7 +114,7 @@ router.get("/users/:id", getUserById);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               username:
  *                 type: string
  *               email:
  *                 type: string

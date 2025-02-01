@@ -21,8 +21,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: passwd
       MYSQL_DATABASE: demo
-      MYSQL_USER: root
-      MYSQL_PASSWORD: passwd
     ports:
       - "3306:3306"  # Expose MySQL port
     volumes:
